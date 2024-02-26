@@ -1,11 +1,11 @@
---start
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
 
 local Window = Library.CreateLib("Genesis Alpha Test Loader", "DarkTheme")
 
-local Tab1 = Window:NewTab("Free Scripts")
+local Tab = Window:NewTab("Free Scripts")
 local Tab2 = Window:NewTab("Paid Scripts")
 
+local Tab1 = Tab:NewSection("Scripts")
 Tab1:NewButton("Anime Dimensions", "Load Anime Dimensions", function()
     AnimeDim()
 end)
