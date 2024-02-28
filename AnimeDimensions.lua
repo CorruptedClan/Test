@@ -524,7 +524,7 @@ Main:AddToggle(
     {
         Name = "Auto Punch",
         Default = _G.Settings.AutoPunch,
-        --Color = Color3.fromRGB(255,215,0),
+        -------- 
         Callback = function(H)
             _G.Settings.AutoPunch = H
             saveSettings()
@@ -949,7 +949,7 @@ TP:AddToggle(
     {
         Name = "TP onTop",
         Default = _G.Settings.AutoTP,
-        ------Color = Color3.fromRGB(255,215,0),
+        ------------ 
         Callback = function(H)
             _G.Settings.AutoTP = H
             saveSettings()
@@ -1003,7 +1003,7 @@ TP:AddToggle(
     {
         Name = "TP Under",
         Default = _G.Settings.AutoTP1,
-        ------Color = Color3.fromRGB(255,215,0),
+        ------------ 
         Callback = function(H)
             _G.Settings.AutoTP1 = H
             saveSettings()
@@ -1057,7 +1057,7 @@ TP:AddToggle(
     {
         Name = "TP Behind",
         Default = _G.Settings.AutoTP2,
-        ------Color = Color3.fromRGB(255,215,0),
+        ------------ 
         Callback = function(H)
             _G.Settings.AutoTP2 = H
             saveSettings()
@@ -1110,7 +1110,7 @@ AutoSP:AddToggle(
     {
         Name = "skill 1",
         Default = _G.Settings.AutoSkill1,
-        ----Color = Color3.fromRGB(255,215,0),
+        ---------- 
         Callback = function(H)
             _G.Settings.AutoSkill1 = H
             saveSettings()
@@ -1137,7 +1137,7 @@ AutoSP:AddToggle(
     {
         Name = "skill 2",
         Default = _G.Settings.AutoSkill2,
-        ----Color = Color3.fromRGB(255,215,0),
+        ---------- 
         Callback = function(H)
             _G.Settings.AutoSkill2 = H
             saveSettings()
@@ -1164,7 +1164,7 @@ AutoSP:AddToggle(
     {
         Name = "skill 3",
         Default = _G.Settings.AutoSkill3,
-        ----Color = Color3.fromRGB(255,215,0),
+        ---------- 
         Callback = function(H)
             _G.Settings.AutoSkill3 = H
             saveSettings()
@@ -1191,7 +1191,7 @@ AutoSP:AddToggle(
     {
         Name = "skill 4",
         Default = _G.Settings.AutoSkill4,
-        ----Color = Color3.fromRGB(255,215,0),
+        ---------- 
         Callback = function(H)
             _G.Settings.AutoSkill4 = H
             saveSettings()
@@ -1218,7 +1218,7 @@ AutoSP:AddToggle(
     {
         Name = "skill 5 (awaken units)",
         Default = _G.Settings.AutoSkill5,
-        ----Color = Color3.fromRGB(255,215,0),
+        ---------- 
         Callback = function(H)
             _G.Settings.AutoSkill5 = H
             saveSettings()
@@ -1246,7 +1246,7 @@ AutoSP:AddToggle(
     {
         Name = "Assist 1",
         Default = _G.Settings.AutoSkill5,
-        ----Color = Color3.fromRGB(255,215,0),
+        ---------- 
         Callback = function(H)
             _G.Settings.AutoSkill5 = H
             saveSettings()
@@ -1273,7 +1273,7 @@ AutoSP:AddToggle(
     {
         Name = "Assist 2",
         Default = _G.Settings.AutoSkill6,
-        ----Color = Color3.fromRGB(255,215,0),
+        ---------- 
         Callback = function(H)
             _G.Settings.AutoSkill6 = H
             saveSettings()
@@ -1306,32 +1306,32 @@ AutoSP:AddSlider(
 )
 
 TP:AddSlider(
-    {Name = "Speed", Default = _G.Settings.Speed, Min = 80, Max = 100, Color = Color3.fromRGB(255,215,0), Callback = function(H)
+    {Name = "Speed", Default = _G.Settings.Speed, Min = 80, Max = 100, Callback = function(H)
             _G.Settings.Speed = H
             saveSettings()
         end}
 )
 TP:AddSlider(
-    {Name = "Over Height", Default = _G.Settings.Height, Min = 5, Max = 10, Color = Color3.fromRGB(255,215,0), Callback = function(H)
+    {Name = "Over Height", Default = _G.Settings.Height, Min = 5, Max = 10, Callback = function(H)
             _G.Settings.Height = H
             saveSettings()
         end}
 )
 TP:AddSlider(
-    {Name = "Under Height", Default = _G.Settings.Height1, Min = -15, Max = -10, Color = Color3.fromRGB(255,215,0), Callback = function(H)
+    {Name = "Under Height", Default = _G.Settings.Height1, Min = -15, Max = -10, Callback = function(H)
             _G.Settings.Height1 = H
             saveSettings()
         end}
 )
 TP:AddSlider(
-    {Name = "Behind Distance", Default = _G.Settings.distance, Min = 0, Max = 20, Color = Color3.fromRGB(255,215,0), Callback = function(H)
+    {Name = "Behind Distance", Default = _G.Settings.distance, Min = 0, Max = 20, Callback = function(H)
             _G.Settings.distance = H
             saveSettings()
         end}
 )
 
 Notify:AddSlider(
-    {Name = "Send Delay", Default = _G.Settings.webhookspeed, Min = 10, Max = 10, Color = Color3.fromRGB(255,215,0), Callback = function(H)
+    {Name = "Send Delay", Default = _G.Settings.webhookspeed, Min = 10, Max = 10, Callback = function(H)
             _G.Settings.webhookspeed = H
             saveSettings()
         end}
@@ -1355,6 +1355,221 @@ Notify:AddTextbox(
     }
 )
 
+Notify:AddTextbox(
+    {Name = "Webhook Url", Default = _G.Settings.webhookurl, TextDisappear = false, Callback = function(H)
+            _G.Settings.webhookurl = H
+            saveSettings()
+        end}
+)
+Notify:AddToggle(
+    {
+        Name = "Clear Notifier",
+        Default = _G.Settings.webhook,
+        
+        Callback = function(H)
+            _G.Settings.webhook = H
+            saveSettings()
+            task.spawn(
+                function()
+                    while task.wait(_G.Settings.webhookspeed) do
+                        if not _G.Settings.webhook then
+                            break
+                        end
+                        if
+                            game.Players.LocalPlayer.PlayerGui.UniversalGui.UniversalCenterUIFrame.ResultUI.Visible ==
+                                true
+                         then
+                            _G.Name = game.Players.LocalPlayer.Name .. "StatDisplay"
+                            function webhook(_, a0)
+                                local request = http_request or request or HttpPost or syn.request
+                                request(
+                                    {
+                                        Url = _G.Settings.webhookurl,
+                                        Method = "POST",
+                                        Headers = {["Content-Type"] = "application/json"},
+                                        Body = game:GetService("HttpService"):JSONEncode({embeds = {_}, content = a0})
+                                    }
+                                )
+                            end
+                            local _ = {
+                                ["title"] = "GAME CLEAR",
+                                ["type"] = "rich",
+                                ["thumbnail"] = {
+                                    ["url"] = "https://cdn.discordapp.com/attachments/943829587090100224/987429857354973224/Opera_Snapshot_2022-06-18_015321_www.canva.com.png"
+                                },
+                                ["description"] = "Character Info / Session Info:",
+                                ["fields"] = {
+                                    {
+                                        ["name"] = "ðŸ’¥ My Level",
+                                        ["value"] = game:GetService("HttpService"):JSONDecode(
+                                            game.Players.LocalPlayer.leaderstats.Level.Value
+                                        )
+                                    },
+                                    {
+                                        ["name"] = "âš ï¸ Exploit Detected",
+                                        ["value"] = game:GetService("HttpService"):JSONDecode(
+                                            game.ReplicatedStorage[_G.Name].ExploitsDetected.Value
+                                        )
+                                    },
+                                    {
+                                        ["name"] = "ðŸ’  Infinite Record",
+                                        ["value"] = game:GetService("HttpService"):JSONDecode(
+                                            game.ReplicatedStorage[_G.Name].InfiniteRecord.Value
+                                        )
+                                    },
+                                    {
+                                        ["name"] = "ðŸŒŒ Dimension Clear",
+                                        ["value"] = game:GetService("HttpService"):JSONDecode(
+                                            game.ReplicatedStorage[_G.Name].StageClear.Value
+                                        )
+                                    },
+                                },
+                                ["timestamp"] = DateTime.now():ToIsoDate()
+                            }
+                            webhook(_, "<@" .. _G.Settings.dsuser .. ">" .. _G.Settings.otherds)
+                        end
+                    end
+                end
+            )
+        end
+    }
+)
+Notify:AddToggle(
+    {
+        Name = "Raid Notifier",
+        Default = _G.Settings.raidwebhook,
+        
+        Callback = function(H)
+            _G.Settings.raidwebhook = H
+            saveSettings()
+            task.spawn(
+                function()
+                    while task.wait(_G.Settings.webhookspeed) do
+                        if not _G.Settings.raidwebhook then
+                            break
+                        end
+                        if
+                            game.Players.LocalPlayer.PlayerGui.UniversalGui.UniversalCenterUIFrame.RaidResultUI.Visible ==
+                                true
+                         then
+                            _G.Name = game.Players.LocalPlayer.Name .. "StatDisplay"
+                            function webhook(_, a0)
+                                local request = http_request or request or HttpPost or syn.request
+                                request(
+                                    {
+                                        Url = _G.Settings.webhookurl,
+                                        Method = "POST",
+                                        Headers = {["Content-Type"] = "application/json"},
+                                        Body = game:GetService("HttpService"):JSONEncode({embeds = {_}, content = a0})
+                                    }
+                                )
+                            end
+                            local _ = {
+                                ["title"] = "RAID & BOSSRUSH CLEAR",
+                                ["type"] = "rich",
+                                ["thumbnail"] = {
+                                    ["url"] = "https://cdn.discordapp.com/attachments/943829587090100224/987429857354973224/Opera_Snapshot_2022-06-18_015321_www.canva.com.png"
+                                },
+                                ["description"] = "Character Info / Session Info:",
+                                ["fields"] = {
+                                    {
+                                        ["name"] = "âš ï¸ Exploit Detected",
+                                        ["value"] = game:GetService("HttpService"):JSONDecode(
+                                            game.ReplicatedStorage[_G.Name].ExploitsDetected.Value
+                                        )
+                                    },
+                                    {
+                                        ["name"] = "ðŸŒ€ Boss Rush Clear",
+                                        ["value"] = game:GetService("HttpService"):JSONDecode(
+                                            game.ReplicatedStorage[_G.Name].BossRushClears.Value
+                                        )
+                                    },
+                                    {
+                                        ["name"] = "ðŸŽŸï¸ Boss Rush Ticket",
+                                        ["value"] = game:GetService("HttpService"):JSONDecode(
+                                            game.ReplicatedStorage[_G.Name].BossRushFreeEntry.Value
+                                        )
+                                    },
+                                    {
+                                        ["name"] = "ðŸŒ€ Raid Clear",
+                                        ["value"] = game:GetService("HttpService"):JSONDecode(
+                                            game.ReplicatedStorage[_G.Name].RaidClears.Value
+                                        )
+                                    }
+                                },
+                                ["timestamp"] = DateTime.now():ToIsoDate()
+                            }
+                            webhook(_, "<@" .. _G.Settings.dsuser .. ">" .. _G.Settings.otherds)
+                        end
+                    end
+                end
+            )
+        end
+    }
+)
+Notify:AddToggle(
+    {
+        Name = "Level Notifier",
+        Default = _G.Settings.levelwebhook,
+        
+        Callback = function(H)
+            _G.Settings.levelwebhook = H
+            saveSettings()
+            task.spawn(
+                function()
+                    while task.wait(3) do
+                        if not _G.Settings.levelwebhook then
+                            break
+                        end
+                        if
+                            game.Players.LocalPlayer.PlayerGui.UniversalGui.UniversalCenterUIFrame.LevelUpImage.Visible ==
+                                true
+                         then
+                            _G.Name = game.Players.LocalPlayer.Name .. "StatDisplay"
+                            function webhook(_, a0)
+                                local request = http_request or request or HttpPost or syn.request
+                                request(
+                                    {
+                                        Url = _G.Settings.webhookurl,
+                                        Method = "POST",
+                                        Headers = {["Content-Type"] = "application/json"},
+                                        Body = game:GetService("HttpService"):JSONEncode({embeds = {_}, content = a0})
+                                    }
+                                )
+                            end
+                            local _ = {
+                                ["title"] = "ðŸ†™ YOU HAVE LEVELED",
+                                ["type"] = "rich",
+                                ["thumbnail"] = {
+                                    ["url"] = "https://cdn.discordapp.com/attachments/943829587090100224/987429857354973224/Opera_Snapshot_2022-06-18_015321_www.canva.com.png"
+                                },
+                                ["description"] = "",
+                                ["fields"] = {
+                                    {
+                                        ["name"] = "Your are now:",
+                                        ["value"] = game:GetService("HttpService"):JSONDecode(
+                                            game.Players.LocalPlayer.leaderstats.Level.Value
+                                        )
+                                    }
+                                },
+                                ["timestamp"] = DateTime.now():ToIsoDate()
+                            }
+                            webhook(_, "<@" .. _G.Settings.dsuser .. ">" .. _G.Settings.otherds)
+                        end
+                    end
+                end
+            )
+        end
+    }
+)
+
+Raid:AddToggle(
+    {Name = "Friends Only", Default = _G.Settings.FriendsOnly,  Callback = function(H)
+            _G.Settings.FriendsOnly = H
+            saveSettings()
+        end}
+)
+
 B:AddDropdown(
     {Name = "Select Capsule", Default = _G.Settings.selectegg, Options = s, Callback = function(H)
             _G.Settings.selectegg = H
@@ -1365,7 +1580,7 @@ B:AddToggle(
     {
         Name = "Auto Capsule",
         Default = _G.Settings.autospingem,
-        Color = Color3.fromRGB(255,215,0),
+        ------ 
         Callback = function(H)
             _G.Settings.autospingem = H
             saveSettings()
@@ -1387,7 +1602,7 @@ B:AddToggle(
 )
 
 B:AddSlider(
-    {Name = "Spin Delay", Default = _G.Settings.eggspintime, Min = 0, Max = 10, Color = Color3.fromRGB(255,215,0), Callback = function(H)
+    {Name = "Spin Delay", Default = _G.Settings.eggspintime, Min = 0, Max = 10, Callback = function(H)
             _G.Settings.eggspintime = H
             saveSettings()
         end}
@@ -1412,6 +1627,310 @@ Raid:AddDropdown(
             saveSettings()
         end}
 )
+
+--extra
+Extra:AddToggle(
+    {
+        Name = "Hide Name",
+        Default = _G.Settings.Hidename,
+        ------ 
+        Callback = function(H)
+            _G.Settings.Hidename = H
+            saveSettings()
+            task.spawn(
+                function()
+                    while task.wait(1) do
+                        if not _G.Settings.Hidename then
+                            break
+                        end
+                        spawn(
+                            function()
+                                game.Players.LocalPlayer.Character.Head.PlayerHealthBarGui:Destroy()
+                                game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
+                            end
+                        )
+                        spawn(
+                            function()
+                                local j = game:GetService("Players").LocalPlayer
+                                local a1
+                                j.CharacterAdded:Connect(
+                                    function(a2)
+                                        a1 = a2:WaitForChild("Humanoid")
+                                    end
+                                )
+                                a1.Died:Connect(
+                                    function()
+                                        game.Players.LocalPlayer.Character.Head.PlayerHealthBarGui:Destroy()
+                                        game:GetService("StarterGui"):SetCoreGuiEnabled(
+                                            Enum.CoreGuiType.PlayerList,
+                                            false
+                                        )
+                                    end
+                                )
+                            end
+                        )
+                    end
+                end
+            )
+        end
+    }
+)
+
+Extra:AddToggle(
+    {
+        Name = "Rejoin If Kick",
+        Default = _G.Settings.kickrejoin,
+        ------ 
+        Callback = function(H)
+            _G.Settings.kickrejoin = H
+            saveSettings()
+            task.spawn(
+                function()
+                    while task.wait(1) do
+                        if not _G.Settings.kickrejoin then
+                            break
+                        end
+                        game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(
+                            function(a3)
+                                if
+                                    a3.Name == "ErrorPrompt" and a3:FindFirstChild("MessageArea") and
+                                        a3.MessageArea:FindFirstChild("ErrorFrame")
+                                 then
+                                    game:GetService("TeleportService"):Teleport(6938803436, LocalPlayer)
+                                end
+                            end
+                        )
+                    end
+                end
+            )
+        end
+    }
+)
+
+C:AddToggle(
+    {
+        Name = "Daily Quest",
+        Default = _G.Settings.Autoclaimquest,
+        ---- 
+        Callback = function(H)
+            _G.Settings.Autoclaimquest = H
+            saveSettings()
+            task.spawn(
+                function()
+                    while task.wait(1) do
+                        if not _G.Settings.Autoclaimquest then
+                            break
+                        end
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "CompleteDailyQuest",
+                            "DailyQuest_Login"
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "CompleteDailyQuest",
+                            "DailyQuest_DungeonClear"
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "CompleteDailyQuest",
+                            "DailyQuest_Enemies"
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "CompleteDailyQuest",
+                            "DailyQuest_TimeChallenge"
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "CompleteDailyQuest",
+                            "DailyQuest_Raid"
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "CompleteDailyQuest",
+                            "DailyQuest_BossRush"
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "CompleteDailyQuest",
+                            "DailyQuest_AllQuestClear"
+                        )
+                    end
+                end
+            )
+        end
+    }
+)
+C:AddToggle(
+    {
+        Name = "Speed Raid Rewards",
+        Default = _G.Settings.autoclaimrewardspeed,
+        ---- 
+        Callback = function(H)
+            _G.Settings.autoclaimrewardspeed = H
+            saveSettings()
+            task.spawn(
+                function()
+                    while task.wait(1) do
+                        if not _G.Settings.autoclaimrewardspeed then
+                            break
+                        end
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "ClaimWeeklySpeedRaidReward",
+                            1
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "ClaimWeeklySpeedRaidReward",
+                            2
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "ClaimWeeklySpeedRaidReward",
+                            3
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "ClaimWeeklySpeedRaidReward",
+                            4
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "ClaimWeeklySpeedRaidReward",
+                            5
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "ClaimWeeklySpeedRaidReward",
+                            6
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "ClaimWeeklySpeedRaidReward",
+                            7
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "ClaimWeeklySpeedRaidReward",
+                            8
+                        )
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "ClaimWeeklySpeedRaidReward",
+                            9
+                        )
+                    end
+                end
+            )
+        end
+    }
+)
+C:AddToggle(
+    {
+        Name = "Daily Raid Ticket",
+        Default = _G.Settings.autoclaimrewardraid,
+        ---- 
+        Callback = function(H)
+            _G.Settings.autoclaimrewardraid = H
+            saveSettings()
+            task.spawn(
+                function()
+                    while task.wait(1) do
+                        if not _G.Settings.autoclaimrewardraid then
+                            break
+                        end
+                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                            "GiveFreeDailyGemFromShop"
+                        )
+                    end
+                end
+            )
+        end
+    }
+)
+--afk
+Afk:AddToggle(
+    {
+        Name = "Farm Raid + AFK",
+        Default = _G.Settings.afkandraid,
+        
+        Callback = function(H)
+            _G.Settings.afkandraid = H
+            saveSettings()
+            task.spawn(
+                function()
+                    while task.wait(3) do
+                        if not _G.Settings.afkandraid then
+                            break
+                        end
+                        spawn(
+                            function()
+                                if game.PlaceId == 7274690025 or game.PlaceId == 6938803436 then
+                                    game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                                        "CreateRoom",
+                                        {
+                                            ["Difficulty"] = "Easy",
+                                            ["FriendsOnly"] = true,
+                                            ["MapName"] = _G.Settings.Raidselectmap,
+                                            ["Hardcore"] = false
+                                        }
+                                    )
+                                    game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                                        "TeleportPlayers"
+                                    )
+                                    wait(5)
+                                    game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                                        "TeleportToAFK"
+                                    )
+                                end
+                            end
+                        )
+                        spawn(
+                            function()
+                                if game.PlaceId == 6990131029 then
+                                    wait(300)
+                                    game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                                        "TeleportToLobbyAFK",
+                                        true
+                                    )
+                                end
+                            end
+                        )
+                    end
+                end
+            )
+        end
+    }
+)
+
+Afk:AddToggle(
+    {
+        Name = "Farm Raid Token",
+        Default = _G.Settings.farmraidtoken,
+        
+        Callback = function(H)
+            _G.Settings.farmraidtoken = H
+            saveSettings()
+            task.spawn(
+                function()
+                    while task.wait(260) do
+                        if not _G.Settings.farmraidtoken then
+                            break
+                        end
+                        spawn(
+                            function()
+                                if game.PlaceId == 6990131029 then
+                                    _G.Name = game.Players.LocalPlayer.Name .. "StatDisplay"
+                                    valuecurrency = game.ReplicatedStorage[_G.Name].AfkCurrencyChosen.Value
+                                    if valuecurrency == "Gem" then
+                                        wait(1)
+                                        game:GetService("ReplicatedStorage").RemoteFunctions.MainRemoteFunction:InvokeServer(
+                                            "ChangeAFKCurrency"
+                                        )
+                                        for m, n in pairs(
+                                            getconnections(
+                                                game.Players.LocalPlayer.PlayerGui.AfkGui.CenterUIFrame.Frame.ChangeCurrency.MouseButton1Click
+                                            )
+                                        ) do
+                                            n:Fire()
+                                        end
+                                    end
+                                end
+                            end
+                        )
+                    end
+                end
+            )
+        end
+    }
+)
+Afk:AddLabel("Disable Farm Raid Token if you want to farm gems")
 
 --escape
 G:AddButton({
