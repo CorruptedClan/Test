@@ -1940,7 +1940,7 @@ G:AddButton({
   	end    
 })
 
-G:AddLabel("Version Info: SAM760@, V1, Stable")
+G:AddLabel("Version Info: SAM760@, V2, Stable")
 
     --end
     OrionLib:Init()
