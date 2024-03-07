@@ -305,7 +305,7 @@ Main:AddButton({
 Main:AddButton({
 	Name = "Better Fly (coming soon)",
 	Callback = function()
-    	bike()
+    	print("soon")
   	end    
 })
 
